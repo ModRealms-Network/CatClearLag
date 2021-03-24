@@ -24,15 +24,14 @@ public class CCLService {
         Predicate<Entity> entityWhitelist = entity -> !CatClearLag.instance.getCclConfig().entityWhiteList.contains(entity.getType().getId());
         checks.put(Type.HOSTILE, notAPlayer().and(o -> o instanceof Hostile).and(entityWhitelist));
         checks.put(Type.ITEM, notAPlayer().and(o -> o instanceof Item && o.get(Keys.DESPAWN_DELAY).isPresent() &&
-                o.get(Keys.DESPAWN_DELAY).get() < CatClearLag.instance.getCclConfig().itemDespawnRate
-        ).and(whitelistCheck));
+                o.get(Keys.DESPAWN_DELAY).get() < CatClearLag.instance.getCclConfig().itemDespawnRate).and(whitelistCheck));
         checks.put(Type.ALL, notAPlayer().and(Entity.class::isInstance).and(entityWhitelist));
         checks.put(Type.LIVING, notAPlayer().and(o -> o instanceof Living).and(entityWhitelist));
         checks.put(Type.XP, notAPlayer().and(o -> o instanceof ExperienceOrb).and(entityWhitelist));
         checks.put(Type.ANIMAL, notAPlayer().and(o -> o instanceof Animal).and(entityWhitelist));
         checks.put(Type.NAMED, notAPlayer().and(entity -> !entity.get(Keys.DISPLAY_NAME).isPresent() &&
                 (entity.get(Keys.PERSISTS).isPresent() && !entity.get(Keys.PERSISTS).get()) &&
-                !entity.get(Keys.TAMED_OWNER).isPresent()));
+                !entity.get(Keys.TAMED_OWNER).isPresent()).and(whitelistCheck));
         checks.put(Type.ENTITY, notAPlayer());
     }
 
