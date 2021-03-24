@@ -56,15 +56,13 @@ public class LaggyChunksCommand implements CommandExecutor {
             }
             Player player = (Player) commandSource;
             Location<World> a = new Location<>(chunk.getWorld(), chunk.getPosition());
-            Location<World> b = new Location<>(a.getExtent(), a.getX() * 16 + 8, a.getExtent().getBlockMax().getY(), a.getZ() * 16 + 8);
-            Optional<BlockRayHit<World>> c = BlockRay.from(b).stopFilter(BlockRay.onlyAirFilter()).to(a.getPosition().sub(b.getX(), 1, b.getZ()))
-                    .end();
+            Location<World> b = new Location<>(chunk.getWorld(), ((a.getX() * 16) + 8), 120, ((a.getZ() * 16 + 8)));
 
-            if (c.isPresent()) {
-                BlockRayHit<World> d = c.get();
-                player.setLocation(d.getLocation());
+
+            if (player.setLocation(b)) {
+                commandSource.sendMessage(Text.of("You have successfully been teleported to: " + b.getX() + "," + b.getZ()));
             } else {
-                commandSource.sendMessage(Text.of("Could not send you to: " + a.getX() + "," + a.getZ()));
+                commandSource.sendMessage(Text.of("Could not send you to: " + b.getX() + "," + b.getZ()));
             }
         }));
     }
