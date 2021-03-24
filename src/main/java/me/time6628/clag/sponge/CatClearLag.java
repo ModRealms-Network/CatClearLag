@@ -187,7 +187,7 @@ public class CatClearLag {
 
     public void addIDToWhiteList(String id) {
         logger.info("adding " + id + " to the whitelist.");
-        cclConfig.whitelist.add(id);
+        cclConfig.itemWhitelist.add(id);
         cfgLoader.saveConfig(cclConfig);
         cclConfig = cfgLoader.getCclConfig();
     }

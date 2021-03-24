@@ -31,7 +31,7 @@ public class CCLConfig {
     }};
 
     @Setting("Item Whitelist")
-    public List<String> whitelist = new ArrayList<String>() {{
+    public List<String> itemWhitelist = new ArrayList<String>() {{
         add(ItemTypes.DIAMOND.getId());
         add(BlockTypes.DIAMOND_BLOCK.getId());
         add(BlockTypes.BEACON.getDefaultState().getId());

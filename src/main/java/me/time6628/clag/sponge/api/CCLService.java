@@ -20,7 +20,7 @@ public class CCLService {
 
     public CCLService() {
         checks = new EnumMap<>(Type.class);
-        Predicate<Entity> itemWhitelistCheck = item -> !CatClearLag.instance.getCclConfig().whitelist.contains(((Item) item).getItemType().getId());
+        Predicate<Entity> itemWhitelistCheck = item -> !CatClearLag.instance.getCclConfig().itemWhitelist.contains(((Item) item).getItemType().getId());
         Predicate<Entity> entityWhitelist = entity -> !CatClearLag.instance.getCclConfig().entityWhiteList.contains(entity.getType().getId());
         checks.put(Type.HOSTILE, notAPlayer().and(o -> o instanceof Hostile).and(entityWhitelist));
         checks.put(Type.ITEM, notAPlayer().and(o -> o instanceof Item && o.get(Keys.DESPAWN_DELAY).isPresent() &&
