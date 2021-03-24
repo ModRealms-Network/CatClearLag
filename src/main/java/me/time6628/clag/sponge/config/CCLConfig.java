@@ -30,7 +30,7 @@ public class CCLConfig {
         add(570);
     }};
 
-    @Setting("Whitelist")
+    @Setting("Item Whitelist")
     public List<String> whitelist = new ArrayList<String>() {{
         add(ItemTypes.DIAMOND.getId());
         add(BlockTypes.DIAMOND_BLOCK.getId());
